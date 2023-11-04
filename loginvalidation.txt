@@ -1,0 +1,47 @@
+package testngpkg;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class loginvalidation {
+	
+	WebDriver driver;
+	
+	@BeforeTest
+	public void beforetest()
+	{
+		driver=new ChromeDriver();
+		
+	}
+
+	@BeforeMethod()
+	public void urlloading()
+	{
+		driver.get("https://www.facebook.com/");
+		
+	}
+	
+	@Test
+	public void test1() throws InterruptedException
+	{
+		driver.findElement(By.id("email")).sendKeys("sreeku98@gmail.com");
+		driver.findElement(By.id("pass")).sendKeys("iamunique");
+		driver.findElement(By.name("login")).click();
+		driver.manage().window().maximize();
+		//maximize window
+		Alert a=driver.switchTo().alert();
+		a.dismiss();
+		//For handling notification popup
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("//*[@id=\"mount_0_0_p3\"]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div[1]/div/div/div[1]/div/div/div[1]/ul/li/div/a/div[1]/div[2]/div/div/div/div/span/span")).click();
+		Thread.sleep(3000);
+		//navigating back
+		driver.navigate().back();
+		
+	}
+}
